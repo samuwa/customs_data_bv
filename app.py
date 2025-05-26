@@ -40,7 +40,7 @@ if data:
         Bultos_Sum        = ('Bultos', 'sum'),
         Bultos_Max        = ('Bultos', 'max'),
         Avg_Days_Between  = ('Fecha',   lambda x: x.sort_values().diff().dt.days.mean()),
-    ).reset_index().sort_values(by="Fecha_Count", ascending=False)
+    ).reset_index().sort_values(by="CIF_Sum", ascending=False)
 
     st.dataframe(summary, use_container_width=True, hide_index=True)
 
