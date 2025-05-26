@@ -5,7 +5,7 @@ import plotly.express as px
 st.set_page_config(layout="wide")
 
 st.subheader("Customs Data :boat:")
-st.write("**Importadores Pequeños**")
+# st.write("**Importadores Pequeños**")
 
 data = st.sidebar.file_uploader("Data")
 
@@ -34,11 +34,12 @@ if data:
     pequenos['Fecha'] = pd.to_datetime(pequenos['Fecha'])
     summary = pequenos.groupby('Importador').agg(
         Fecha_Count       = ('Fecha',  'count'),
+        CIF_Sum       = ('U$S CIF',  'sum'),
         Cantidad_Sum      = ('Cantidad','sum'),
         Cantidad_Max      = ('Cantidad','max'),
         Bultos_Sum        = ('Bultos', 'sum'),
         Bultos_Max        = ('Bultos', 'max'),
-        Avg_Days_Between  = ('Fecha',   lambda x: x.sort_values().diff().dt.days.mean())
+        Avg_Days_Between  = ('Fecha',   lambda x: x.sort_values().diff().dt.days.mean()),
     ).reset_index().sort_values(by="Fecha_Count", ascending=False)
 
     st.dataframe(summary, use_container_width=True, hide_index=True)
