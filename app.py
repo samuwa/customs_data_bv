@@ -42,6 +42,8 @@ if data:
         Avg_Days_Between  = ('Fecha',   lambda x: x.sort_values().diff().dt.days.mean()),
     ).reset_index().sort_values(by="CIF_Sum", ascending=False)
 
+    summary = summary[summary["Importador"] != "*"]
+
     st.dataframe(summary, use_container_width=True, hide_index=True)
 
     # View Details
