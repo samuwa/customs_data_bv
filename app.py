@@ -27,8 +27,8 @@ if data:
 
 
     # Filtro pequeños
-    cantidad_min = 50
-    bultos_min = 50
+    cantidad_min = 500000
+    bultos_min = 500000
     pequenos = df[(df["Cantidad"] <= cantidad_min) | (df["Bultos"] <= bultos_min)]
 
     pequenos['Fecha'] = pd.to_datetime(pequenos['Fecha'])
